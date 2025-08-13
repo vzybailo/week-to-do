@@ -17,7 +17,7 @@ export interface Task {
   day: WeekDay;
   done: boolean;
   status: Status
-  priority?: TaskPriority;
+  priority: TaskPriority;
 }
 
 export const WEEK_DAYS: WeekDay[] = [
