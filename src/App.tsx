@@ -1,23 +1,24 @@
-import { useState } from 'react'
+import { WEEK_DAYS, WeekDay } from './types/Task'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 10)}>
-          count is {count}
-        </button>
-        <p className="text-xl">
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="min-h-screen p-4 md:p-8">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4">Week-to-Do</h1>
+
+        {/* Тут позже появится форма добавления задач */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            {WEEK_DAYS.map((day: WeekDay) => (
+              <section key={day} className="rounded-2xl border p-3">
+                <header className="mb-2">
+                  <h2 className="font-semibold capitalize">{day}</h2>
+                </header>
+                <div className="text-sm opacity-60">No tasks</div>
+              </section>
+            ))}
+          </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

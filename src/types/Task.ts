@@ -9,10 +9,17 @@ export type WeekDay =
 
 export type TaskPriority = 'low' | 'medium' | 'high';
 
+export type Status = 'todo' | 'in-progress' | 'done';
+
 export interface Task {
-  id: string;           // уникальный id (можно uuid)
-  title: string;        // название задачи
-  day: WeekDay;         // день недели
-  done: boolean;        // выполнена или нет
-  priority?: TaskPriority; // опционально
+  id: string;
+  title: string;
+  day: WeekDay;
+  done: boolean;
+  status: Status
+  priority?: TaskPriority;
 }
+
+export const WEEK_DAYS: WeekDay[] = [
+  'monday','tuesday','wednesday','thursday','friday','saturday','sunday'
+];
