@@ -1,0 +1,4 @@
+.logo {
+  @apply text-xl;
+  color: red;
+}
