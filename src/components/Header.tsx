@@ -1,7 +1,12 @@
-import Logo from "./Logo/Logo";
+import Logo from "./Logo";
+
+interface MenuItem { 
+  name: string, 
+  url: string
+}
 
 function Header() {
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { name: 'Home', url: '/' },
     { name: 'Photos', url: '/photos'}
   ]

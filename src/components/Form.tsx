@@ -1,9 +1,20 @@
 import { useRef } from "react";
+import { TaskItemType } from "../types/task"
 
-function Form ({title, setTitle, descr, setDescr, taskList, setTaskList, date, setDate}) {
-  const inputRef = useRef(null)
+type FormProps = {
+  title: string,
+  setTitle: React.Dispatch<React.SetStateAction<string>>,
+  descr: string,
+  setDescr: React.Dispatch<React.SetStateAction<string>>,
+  taskList: TaskItemType[],
+  setTaskList: React.Dispatch<React.SetStateAction<TaskItemType[]>>,
+  date: string,
+  setDate: React.Dispatch<React.SetStateAction<string>>
+}
+function Form ({title, setTitle, descr, setDescr, taskList, setTaskList, date, setDate}: FormProps): React.ReactElement {
+  const inputRef: any = useRef(null)
 
-  async function addTask(e) {
+  async function addTask(e: any) {
     e.preventDefault()
 
     if (!title) return;

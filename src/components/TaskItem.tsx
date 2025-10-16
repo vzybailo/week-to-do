@@ -1,8 +1,14 @@
-import { useState, useContext } from "react"
-import TaskContext from "../context/TaskContext"
+import { useState } from "react"
+import { useTaskContext } from "../hooks/useTaskContext"
+import { TaskItemType } from "../types/task"
 
-function TaskItem ({taskItem, index }) {
-  const {toggleMode, editTask, delItem} = useContext(TaskContext)
+type TaskItem = {
+  taskItem: TaskItemType,
+  index: number
+}
+
+function TaskItem ({taskItem, index }: TaskItem): React.ReactElement {
+  const {toggleMode, editTask, delItem} = useTaskContext()
   const [newTitle, setNewTitle] = useState(taskItem.title)
   const [newDescr, setNewDescr] = useState(taskItem.descr)
 

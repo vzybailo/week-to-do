@@ -2,15 +2,17 @@ import Form from "./Form"
 import TaskList from "./TaskList"
 import { useState, useEffect } from "react"
 import TaskContext from "../context/TaskContext"
+import { TaskItemType } from "../types/task"
 
 function Content() {
   const currentDate = new Date().toISOString().split('T')[0]
 
-  const [title, setTitle] = useState('')
-  const [descr, setDescr] = useState('')
-  const [isEdit, setIsEdit] = useState(false)
-  const [taskList, setTaskList] = useState([])
-  const [date, setDate] = useState(currentDate)
+  const [title, setTitle] = useState<string>('')
+  const [descr, setDescr] = useState<string>('')
+  const [isEdit, setIsEdit] = useState<boolean>(false)
+  const [date, setDate] = useState<string>(currentDate)
+
+  const [taskList, setTaskList] = useState<TaskItemType[]>([])
 
   useEffect(() => {
     async function fetchTasks() {
@@ -21,7 +23,7 @@ function Content() {
     fetchTasks();
   }, []);
 
-  function toggleMode(id) {
+  function toggleMode(id: number): void {
     setTaskList(taskList.map((taskItem, index) => {
       if(id === index) {
         return {...taskItem, isEdit: !taskItem.isEdit}
@@ -30,7 +32,7 @@ function Content() {
     }))
   }
 
-  async function editTask(id, newTitle, newDescr) {
+  async function editTask(id: number, newTitle: string, newDescr: string): Promise<void> {
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -41,7 +43,7 @@ function Content() {
     setTaskList(taskList.map(task => task.id === id ? updatedTask : task));
   }
 
-  async function delItem (id) {
+  async function delItem (id: number): Promise<void> {
     await fetch(`http://localhost:5000/tasks/${id}`, { method: 'DELETE' });
     setTaskList(taskList.filter(task => task.id !== id));
   }
@@ -57,7 +59,6 @@ function Content() {
         setDate={setDate}
         taskList={taskList} 
         setTaskList={setTaskList}
-        isEdit={isEdit}
       />
       <TaskContext.Provider value={{toggleMode, editTask, delItem}}>
         <TaskList taskList={taskList} />
