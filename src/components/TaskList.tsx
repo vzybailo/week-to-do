@@ -11,7 +11,7 @@ function TaskList({ taskList }: TaskListProps): React.ReactElement {
 
   }
   return (
-    <ul className="space-y-3 w-full max-w-md mx-auto mt-6">
+    <ul className="space-y-3 w-full max-w-md mx-auto mt-6 h-[2000px]">
       {taskList.map((task, index) => (
         <TaskItem 
           key={task.id}

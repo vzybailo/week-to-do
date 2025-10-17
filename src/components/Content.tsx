@@ -3,15 +3,14 @@ import TaskList from "./TaskList"
 import { useState, useEffect } from "react"
 import TaskContext from "../context/TaskContext"
 import { TaskItemType } from "../types/task"
+import ToTop from "./ToTop"
 
 function Content() {
   const currentDate = new Date().toISOString().split('T')[0]
 
   const [title, setTitle] = useState<string>('')
   const [descr, setDescr] = useState<string>('')
-  const [isEdit, setIsEdit] = useState<boolean>(false)
   const [date, setDate] = useState<string>(currentDate)
-
   const [taskList, setTaskList] = useState<TaskItemType[]>([])
 
   useEffect(() => {
@@ -63,6 +62,7 @@ function Content() {
       <TaskContext.Provider value={{toggleMode, editTask, delItem}}>
         <TaskList taskList={taskList} />
       </TaskContext.Provider>
+      <ToTop />
     </>
   )
 }
